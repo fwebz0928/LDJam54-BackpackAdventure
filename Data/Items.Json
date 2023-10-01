@@ -1,0 +1,87 @@
+{
+    "1": {
+        "Name": "SmallPotion",
+        "Description": "Heals 1 hearts worth of damage",
+        "Grid": "0,0",
+        "Stats": {
+            "HitChance": 0,
+            "Damage": 0,
+            "HealingItem": true,
+            "HealingAmount": 20,
+            "IncreaseHealth": 0
+            
+        }
+    },
+    "2": {
+        "Name": "Sword",
+        "Description": "Deals moderate damage with a greater chance to hit",
+        "Grid": "0,0/0,1",
+        "Stats": {
+            "HitChance": 10,
+            "Damage": 3,
+            "HealingItem": true,
+            "HealingAmount": 0,
+            "IncreaseHealth": 0
+        }
+    },
+    "3": {
+        "Name": "Mace",
+        "Description": "Deals a higher damage with less chance to hit",
+        "Grid": "0,0/0,1/1,0",
+        "Stats": {
+            "HitChance": 15,
+            "Damage": 5,
+            "HealingItem": false,
+            "HealingAmount": 0,
+            "IncreaseHealth": 0
+        }
+    },
+    "4": {
+        "Name": "Shield",
+        "Description": "Used to block incoming attacks but somehow makes you do more damage",
+        "Grid": "0,0/-1,0/-1,1/0,1",
+        "Stats": {
+            "HitChance": 30,
+            "Damage": 0,
+            "HealingItem": false,
+            "HealingAmount": 0,
+            "IncreaseHealth": 0
+        }
+    },
+    "5": {
+        "Name": "MediumPotion",
+        "Description": "Heals 2 hearts worth of damage",
+        "Grid": "0,0/0,1",
+        "Stats": {
+            "HitChance": 0,
+            "Damage": 0,
+            "HealingItem": true,
+            "HealingAmount": 50,
+            "IncreaseHealth": 0
+        }
+    },
+    "6": {
+        "Name": "Dagger",
+        "Description": "Low damage high hit chance",
+        "Grid": "0,0",
+        "Stats": {
+            "HitChance": 30,
+            "Damage": 1,
+            "HealingItem": true,
+            "HealingAmount": 50,
+            "IncreaseHealth": 0
+        }
+    },
+    "7": {
+        "Name": "Staff Of Life",
+        "Description": "Increases max health by 1",
+        "Grid": "0,0",
+        "Stats": {
+            "HitChance": 30,
+            "Damage": 1,
+            "HealingItem": true,
+            "HealingAmount": 50,
+            "IncreaseHealth": 1
+        }
+    }
+}

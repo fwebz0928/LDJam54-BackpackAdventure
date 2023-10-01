@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckaysbg2rpoui"]
+
+[ext_resource type="Script" path="res://Scripts/WaveSpawner.gd" id="1_frcpw"]
+[ext_resource type="PackedScene" uid="uid://douci5m6cdbhw" path="res://Scenes/enemy.tscn" id="2_f78by"]
+
+[node name="WaveSpawner" type="Node2D" node_paths=PackedStringArray("spawnPoint")]
+script = ExtResource("1_frcpw")
+enemy = ExtResource("2_f78by")
+spawnPoint = NodePath("SpawnPoint")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(481, 470)

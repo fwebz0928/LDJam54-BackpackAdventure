@@ -1,1 +1,13 @@
+ColorRect
+Label
+Button
+CollisionShape2D
+Area2D
+Node2D
+TextureRect
+GridContainer
+HBoxContainer
+CanvasLayer
+TileMap
 Sprite2D
+Camera2D

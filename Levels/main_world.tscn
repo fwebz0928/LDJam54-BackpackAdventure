@@ -1,3 +1,50 @@
-[gd_scene format=3 uid="uid://dugv8jndjgenm"]
+[gd_scene load_steps=10 format=3 uid="uid://dugv8jndjgenm"]
+
+[ext_resource type="Texture2D" uid="uid://cdpqv1j2it006" path="res://Sprites/Background.png" id="1_t8fat"]
+[ext_resource type="PackedScene" uid="uid://dj4qdjy3xadrq" path="res://Scenes/player.tscn" id="1_uaayd"]
+[ext_resource type="PackedScene" uid="uid://ckaysbg2rpoui" path="res://Scenes/WaveSpawner.tscn" id="3_6uws5"]
+[ext_resource type="PackedScene" uid="uid://dmc5pv8e71bqy" path="res://Scenes/TurnController.tscn" id="4_tcmrw"]
+[ext_resource type="Texture2D" uid="uid://c1bvu68cyus63" path="res://Sprites/Tile.png" id="5_kqwyn"]
+[ext_resource type="PackedScene" uid="uid://b8odjvy6res5a" path="res://Scenes/GameUI.tscn" id="6_owd03"]
+[ext_resource type="PackedScene" uid="uid://w7bwlufikhww" path="res://Scenes/Inventory.tscn" id="7_i6g51"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l40wm"]
+texture = ExtResource("5_kqwyn")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xrypb"]
+sources/0 = SubResource("TileSetAtlasSource_l40wm")
 
 [node name="MainWorld" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(270, 242)
+scale = Vector2(3.94181, 2.12741)
+texture = ExtResource("1_t8fat")
+
+[node name="Inventory" parent="." instance=ExtResource("7_i6g51")]
+offset_left = 271.0
+offset_top = 236.0
+offset_right = 271.0
+offset_bottom = 236.0
+
+[node name="Player" parent="." instance=ExtResource("1_uaayd")]
+position = Vector2(114, 436)
+
+[node name="GameUI" parent="." instance=ExtResource("6_owd03")]
+
+[node name="WaveSpawner" parent="." node_paths=PackedStringArray("spawnPoint") instance=ExtResource("3_6uws5")]
+spawnPoint = NodePath("Spawn")
+
+[node name="Spawn" type="Node2D" parent="WaveSpawner"]
+position = Vector2(461, 434)
+
+[node name="TurnController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tcmrw")]
+player = NodePath("../Player")
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(81, 569)
+tile_set = SubResource("TileSet_xrypb")
+format = 2
+layer_0/tile_data = PackedInt32Array(-393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, -458743, 0, 0, -458742, 0, 0, -458741, 0, 0, -458740, 0, 0, -458739, 0, 0, -458738, 0, 0, -458737, 0, 0, -458736, 0, 0, -458735, 0, 0, -458734, 0, 0, -458733, 0, 0, -458732, 0, 0, -458731, 0, 0, -458730, 0, 0, -458729, 0, 0, -458728, 0, 0, -458727, 0, 0, -458726, 0, 0, -393222, 0, 0, -393223, 0, 0, -458725, 0, 0, -458724, 0, 0, -458723, 0, 0, -458722, 0, 0, -458721, 0, 0, -458720, 0, 0, -458719, 0, 0, -458718, 0, 0, -458717, 0, 0)
