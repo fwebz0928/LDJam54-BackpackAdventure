@@ -19,6 +19,7 @@ func TakeDamage(damageAmount:int):
 		var amount = Globals.RemoveEnemy(self)
 		if(amount <= 0):
 			var turnController = get_parent().get_node("TurnController") as TurnController
+			turnController.RoundTimer.stop()
 			turnController.EndRound()
 		
 		#remove the enemy

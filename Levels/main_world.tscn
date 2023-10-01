@@ -28,19 +28,39 @@ offset_top = 236.0
 offset_right = 271.0
 offset_bottom = 236.0
 
+[node name="GameUI" parent="." instance=ExtResource("6_owd03")]
+
 [node name="Player" parent="." instance=ExtResource("1_uaayd")]
 position = Vector2(114, 436)
 
-[node name="GameUI" parent="." instance=ExtResource("6_owd03")]
-
-[node name="WaveSpawner" parent="." node_paths=PackedStringArray("spawnPoint") instance=ExtResource("3_6uws5")]
-spawnPoint = NodePath("Spawn")
+[node name="WaveSpawner" parent="." node_paths=PackedStringArray("enemyOrigin", "finalPos") instance=ExtResource("3_6uws5")]
+enemyOrigin = NodePath("Spawn")
+finalPos = NodePath("FinalPos")
 
 [node name="Spawn" type="Node2D" parent="WaveSpawner"]
-position = Vector2(461, 434)
+position = Vector2(581, 434)
 
-[node name="TurnController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tcmrw")]
+[node name="FinalPos" type="Node2D" parent="WaveSpawner"]
+position = Vector2(480, 434)
+
+[node name="TurnController" parent="." node_paths=PackedStringArray("itemSpawnOrigin", "player", "playerOriginPoint", "leftSideSpawn", "rightSideSpawn") instance=ExtResource("4_tcmrw")]
+itemSpawnOrigin = NodePath("ItemSpawnOrigin")
 player = NodePath("../Player")
+playerOriginPoint = NodePath("PlayerOrigin")
+leftSideSpawn = NodePath("LeftSideItemSpawnOrigin")
+rightSideSpawn = NodePath("RightSideItemSpawn")
+
+[node name="ItemSpawnOrigin" type="Node2D" parent="TurnController"]
+position = Vector2(255, -72)
+
+[node name="PlayerOrigin" type="Node2D" parent="TurnController"]
+position = Vector2(-85, 438)
+
+[node name="LeftSideItemSpawnOrigin" type="Node2D" parent="TurnController"]
+position = Vector2(80, 362)
+
+[node name="RightSideItemSpawn" type="Node2D" parent="TurnController"]
+position = Vector2(443, 362)
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1

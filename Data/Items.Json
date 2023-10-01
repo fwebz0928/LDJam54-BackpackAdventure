@@ -1,15 +1,17 @@
 {
     "1": {
         "Name": "SmallPotion",
-        "Description": "Heals 1 hearts worth of damage",
+        "Description": "Heals 1 heart's worth of damage",
         "Grid": "0,0",
         "Stats": {
             "HitChance": 0,
             "Damage": 0,
             "HealingItem": true,
             "HealingAmount": 20,
-            "IncreaseHealth": 0
-            
+            "IncreaseHealth": 0,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 0
         }
     },
     "2": {
@@ -21,19 +23,25 @@
             "Damage": 3,
             "HealingItem": true,
             "HealingAmount": 0,
-            "IncreaseHealth": 0
+            "IncreaseHealth": 0,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 0
         }
     },
     "3": {
         "Name": "Mace",
-        "Description": "Deals a higher damage with less chance to hit",
+        "Description": "Deals higher damage with less chance to hit",
         "Grid": "0,0/0,1/1,0",
         "Stats": {
             "HitChance": 15,
             "Damage": 5,
             "HealingItem": false,
             "HealingAmount": 0,
-            "IncreaseHealth": 0
+            "IncreaseHealth": 0,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 0
         }
     },
     "4": {
@@ -41,47 +49,59 @@
         "Description": "Used to block incoming attacks but somehow makes you do more damage",
         "Grid": "0,0/-1,0/-1,1/0,1",
         "Stats": {
-            "HitChance": 30,
+            "HitChance": 15,
             "Damage": 0,
             "HealingItem": false,
             "HealingAmount": 0,
-            "IncreaseHealth": 0
+            "IncreaseHealth": 0,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 1
         }
     },
     "5": {
         "Name": "MediumPotion",
-        "Description": "Heals 2 hearts worth of damage",
+        "Description": "Heals 2 hearts' worth of damage",
         "Grid": "0,0/0,1",
         "Stats": {
             "HitChance": 0,
             "Damage": 0,
             "HealingItem": true,
-            "HealingAmount": 50,
-            "IncreaseHealth": 0
+            "HealingAmount": 2,
+            "IncreaseHealth": 0,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 0
         }
     },
     "6": {
         "Name": "Dagger",
-        "Description": "Low damage high hit chance",
+        "Description": "Low damage, high hit chance",
         "Grid": "0,0",
         "Stats": {
             "HitChance": 30,
             "Damage": 1,
             "HealingItem": true,
             "HealingAmount": 50,
-            "IncreaseHealth": 0
+            "IncreaseHealth": 0,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 0
         }
     },
     "7": {
         "Name": "Staff Of Life",
         "Description": "Increases max health by 1",
-        "Grid": "0,0",
+        "Grid": "0,0/0,1/0,-1",
         "Stats": {
-            "HitChance": 30,
-            "Damage": 1,
-            "HealingItem": true,
-            "HealingAmount": 50,
-            "IncreaseHealth": 1
+            "HitChance": 0,
+            "Damage": 0,
+            "HealingItem": false,
+            "HealingAmount": 0,
+            "IncreaseHealth": 1,
+            "CritChance": 0,
+            "CritIncrease": 0,
+            "Armor": 0
         }
     }
 }

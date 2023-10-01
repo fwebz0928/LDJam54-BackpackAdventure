@@ -1,11 +1,11 @@
-ColorRect
+TextureRect
 Label
+GridContainer
+Node2D
+ColorRect
 Button
 CollisionShape2D
 Area2D
-Node2D
-TextureRect
-GridContainer
 HBoxContainer
 CanvasLayer
 TileMap

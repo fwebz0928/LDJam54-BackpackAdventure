@@ -8,24 +8,40 @@ class_name  Inventory
 @onready var inventoryRectangle:ColorRect = $"ColorRect"
 @onready var columnCount = inventoryContainer.columns
 
+#Labels for stats
+@onready var healthlabel = $"TextureRect/GridContainer/HealthLabel"
+@onready var armorLable = $"TextureRect/GridContainer/ArmorLabel"
+@onready var hitChance = $"TextureRect/GridContainer/HitChanceLabel"
+@onready var damageLabel = $"TextureRect/GridContainer/DamageLabel"
+@onready var critChanceLabel = $"TextureRect/GridContainer/CritChanceLabel"
+@onready var critLabel = $"TextureRect/GridContainer/CritLabel"
 
+
+var player:Player
 var inventorySlots := []
 var itemHeld = null
 var currentSlot = null
 var canPlace:bool = false
 var iconAnchor:Vector2
-
 var itemsInInventory :=[]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
+	player = get_parent().get_node("Player") as Player
+	player.on_stats_changed.connect(UpdateStatLabels)
+
 	#Generate slots for the Inventory
-	for i in range(20):
+	for i in range(12):
 		CreateSlots()
 
 
 func _process(delta):
+
+	if inventoryContainer.get_global_rect().has_point(get_global_mouse_position()) == false:
+		currentSlot = null
+
+
 	if itemHeld:
 		if Input.is_action_just_pressed("RotateItem"):
 			RotateItem()
@@ -50,18 +66,12 @@ func CreateSlots():
 	createdSlot.slot_entered.connect(OnMouseEntered)
 	createdSlot.slot_exited.connect(OnMouseExit)
 
-
-
-
 func OnMouseEntered(inSlot:InventorySlot):
 	iconAnchor = Vector2(100000,100000)
 	currentSlot = inSlot
 	if itemHeld:
 		CheckSlotAvailability(inSlot)
 		SetGrid.call_deferred(currentSlot)
-
-
-
 
 func OnMouseExit(inSlot:InventorySlot):
 	ClearGrid()
@@ -84,7 +94,6 @@ func CheckSlotAvailability(inSlot:InventorySlot):
 
 	canPlace = true
 
-
 func SetGrid(inSlot:InventorySlot):
 	for grid in itemHeld.itemGrids:
 		var gridToCheck = inSlot.slotID + grid[0]+ grid[1] * columnCount
@@ -102,18 +111,15 @@ func SetGrid(inSlot:InventorySlot):
 		else:
 			inventorySlots[gridToCheck].SetColor(inventorySlots[gridToCheck].SlotState.TAKEN)
 
-
 func ClearGrid():
 	for grid in inventorySlots:
 		grid.SetColor(grid.SlotState.DEFAULT)
-
 
 func RotateItem():
 	itemHeld.RotateItem()
 	ClearGrid()
 	if(currentSlot):
 		OnMouseEntered(currentSlot)
-
 
 func PlaceItem():
 	if not canPlace or not currentSlot:
@@ -129,17 +135,23 @@ func PlaceItem():
 		inventorySlots[gridToCheck].item_stored = itemHeld
 
 	itemsInInventory.push_back(itemHeld)
+	player.UpdateStats(itemHeld,true)
+
 	itemHeld = null
 	ClearGrid()
 
-
 func PickupItem():
 
+
 	#check if above a item 
-	if not currentSlot or not currentSlot.item_stored:
+	if currentSlot == null or  currentSlot.item_stored == null :
 		if CheckForItemOutsideBounds() == true :
 			return
 
+	if(currentSlot == null or currentSlot.item_stored ==null):
+		return
+
+	print("Current Slot Not null")
 
 	itemHeld = currentSlot.item_stored
 	
@@ -157,6 +169,9 @@ func PickupItem():
 		var gridToCheck = itemHeld.gridAnchor.slotID + grid[0] + grid[1] * columnCount
 		inventorySlots[gridToCheck].state = inventorySlots[gridToCheck].SlotState.FREE
 		inventorySlots[gridToCheck].item_stored = null
+
+	#Remove the stats from the player since we pickedup the item
+	player.UpdateStats(itemHeld,false)
 
 	CheckSlotAvailability(currentSlot)
 	SetGrid.call_deferred(currentSlot)
@@ -178,14 +193,13 @@ func GetRandomPosOnBorder() -> Vector2:
 			break
 
 	return randPoint
-	
+
 func CheckForItemOutsideBounds() -> bool:
 	
 	if  itemHeld != null:
 		return false
 
 	var allItems = get_tree().get_nodes_in_group("Item") 
-	print("Checking For Items")
 	for inItem in allItems:
 		var itemToCheck = inItem as Item
 		if itemToCheck.CheckForPoint():
@@ -195,7 +209,6 @@ func CheckForItemOutsideBounds() -> bool:
 			return true
 	return false
 
-
 func DropItem():
 	if itemHeld == null:
 		return
@@ -204,24 +217,26 @@ func DropItem():
 	itemHeld.global_position = get_global_mouse_position()
 	itemHeld = null
 
-
-
-
 func _on_button_pressed():
-	var player = get_parent().get_node("Player") as Player
-	#reset the stats so we dont constantly increase for same items
-	player.ResetStats()
 
-	#get all the items in the inventory and update the stats
-	for item in itemsInInventory:
-		player.Damage += IncreasePercentage(player.Damage,item.damage)
-		player.HitChance += IncreasePercentage(player.HitChance,item.hitChance)
-		player.IncreasePlayerHealth(item.increaseHealth)
+	#check if the next round is a multiple of 5 and update health
+	var nextRoundIndex = Globals.currentRound + 1
+	if(nextRoundIndex % 5 == 0):
+		player.IncreaseDefaultHealth(1)
 
-	#start the new round
+	#Start a new round after updating all stats
+	var TurnController = get_parent().get_node("TurnController") as TurnController
+	TurnController.StartNewRound()
+
 
 
 
 func IncreasePercentage(baseAmount:float,Percentage:float) ->float:	
 	return (Percentage / 100) * baseAmount
 
+func UpdateStatLabels(inPlayer:Player):
+	healthlabel.text = "Health: " + str(inPlayer.Health)
+	damageLabel.text = "Damage: " + str(inPlayer.Damage)
+	hitChance.text = "Hit Chance: " + str(inPlayer.HitChance) + "%"
+	critChanceLabel.text = "Crit Chance: " + str(inPlayer.CritChance)+"%"
+	critLabel.text = "Crit: " + str(inPlayer.CritIncrease) +"%"

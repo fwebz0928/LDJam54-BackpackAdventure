@@ -15,6 +15,9 @@ var hitChance:float = 0
 var healingItem:bool = false
 var healAmount:int = 0
 var increaseHealth:int = 0
+var critChance:float = 0
+var critIncrease:float = 0
+var armor:int = 0
 
 
 
@@ -37,6 +40,9 @@ func LoadItem(InItemID:int):
 	healingItem = stats["HealingItem"]
 	healAmount = stats["HealingAmount"]
 	increaseHealth = stats["IncreaseHealth"]
+	critChance = stats["CritChance"]
+	critIncrease = stats["CritIncrease"]
+	armor = stats["Armor"]
 
 
 	#Get the items grids for sizing in inventory
@@ -52,6 +58,7 @@ func LoadItem(InItemID:int):
 
 func CheckForPoint() ->bool:
 	if itemIcon.get_global_rect().has_point(get_global_mouse_position()):
+		print(self.name)
 		return true
 	return false
 

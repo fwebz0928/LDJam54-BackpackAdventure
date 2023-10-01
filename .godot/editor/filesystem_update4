@@ -1,7 +1,3 @@
-res://Scripts/Inventory.gd
-res://Scripts/TurnController.gd
-res://Scripts/Item.gd
-res://Scripts/DataHandler.gd
 res://Levels/main_world.tscn
 res://Scenes/player.tscn
 res://Scenes/enemy.tscn
@@ -10,7 +6,11 @@ res://Scenes/TurnController.tscn
 res://Scenes/Inventory.tscn
 res://Scenes/InventorySlot.tscn
 res://Scenes/item.tscn
+res://Scripts/DataHandler.gd
+res://Scripts/Inventory.gd
+res://Scripts/TurnController.gd
 res://Scripts/InventorySlot.gd
+res://Scripts/Item.gd
+res://Scripts/WaveSpawner.gd
 res://Scripts/Player.gd
 res://Scripts/GameUI.gd
-res://Scripts/enemy.gd
