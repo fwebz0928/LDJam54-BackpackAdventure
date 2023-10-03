@@ -1,7 +1,7 @@
+Node2D
 TextureRect
 Label
 GridContainer
-Node2D
 ColorRect
 Button
 CollisionShape2D

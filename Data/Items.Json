@@ -11,7 +11,8 @@
             "IncreaseHealth": 0,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 0
+            "Armor": 0,
+            "Turns": 0
         }
     },
     "2": {
@@ -19,14 +20,15 @@
         "Description": "Deals moderate damage with a greater chance to hit",
         "Grid": "0,0/0,1",
         "Stats": {
-            "HitChance": 10,
-            "Damage": 3,
+            "HitChance": 20,
+            "Damage": 8,
             "HealingItem": true,
             "HealingAmount": 0,
             "IncreaseHealth": 0,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 0
+            "Armor": 0,
+            "Turns": 0
         }
     },
     "3": {
@@ -34,14 +36,15 @@
         "Description": "Deals higher damage with less chance to hit",
         "Grid": "0,0/0,1/1,0",
         "Stats": {
-            "HitChance": 15,
-            "Damage": 5,
+            "HitChance": 10,
+            "Damage": 10,
             "HealingItem": false,
             "HealingAmount": 0,
             "IncreaseHealth": 0,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 0
+            "Armor": 0,
+            "Turns": 0
         }
     },
     "4": {
@@ -49,14 +52,15 @@
         "Description": "Used to block incoming attacks but somehow makes you do more damage",
         "Grid": "0,0/-1,0/-1,1/0,1",
         "Stats": {
-            "HitChance": 15,
+            "HitChance": 30,
             "Damage": 0,
             "HealingItem": false,
             "HealingAmount": 0,
             "IncreaseHealth": 0,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 1
+            "Armor": 1,
+            "Turns": 0
         }
     },
     "5": {
@@ -71,7 +75,8 @@
             "IncreaseHealth": 0,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 0
+            "Armor": 0,
+            "Turns": 0
         }
     },
     "6": {
@@ -79,14 +84,15 @@
         "Description": "Low damage, high hit chance",
         "Grid": "0,0",
         "Stats": {
-            "HitChance": 30,
-            "Damage": 1,
+            "HitChance": 25,
+            "Damage": 5,
             "HealingItem": true,
             "HealingAmount": 50,
             "IncreaseHealth": 0,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 0
+            "Armor": 0,
+            "Turns": 0
         }
     },
     "7": {
@@ -101,7 +107,40 @@
             "IncreaseHealth": 1,
             "CritChance": 0,
             "CritIncrease": 0,
-            "Armor": 0
+            "Armor": 0,
+            "Turns": 0
+        }
+    },
+    "8": {
+        "Name": "Necklace",
+        "Description": "Increases crit chance and Crit percentage",
+        "Grid": "0,0/0,1",
+        "Stats": {
+            "HitChance": 0,
+            "Damage": 0,
+            "HealingItem": false,
+            "HealingAmount": 0,
+            "IncreaseHealth": 0,
+            "CritChance": 15,
+            "CritIncrease": 10,
+            "Armor": 0,
+            "Turns": 0
+        }
+    },
+    "9": {
+        "Name": "Glove",
+        "Description": "Increases crit chance and Crit percentage",
+        "Grid": "0,0/0,1",
+        "Stats": {
+            "HitChance": 0,
+            "Damage": 0,
+            "HealingItem": false,
+            "HealingAmount": 0,
+            "IncreaseHealth": 0,
+            "CritChance": 15,
+            "CritIncrease": 10,
+            "Armor": 0,
+            "Turns": 1
         }
     }
 }

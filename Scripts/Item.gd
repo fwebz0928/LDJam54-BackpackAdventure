@@ -10,7 +10,7 @@ var selected:bool = false
 var gridAnchor = null
 
 #Stats
-var damage:float = 25
+var damage:float = 1
 var hitChance:float = 0
 var healingItem:bool = false
 var healAmount:int = 0
@@ -18,6 +18,7 @@ var increaseHealth:int = 0
 var critChance:float = 0
 var critIncrease:float = 0
 var armor:int = 0
+var turns:int = 0
 
 
 

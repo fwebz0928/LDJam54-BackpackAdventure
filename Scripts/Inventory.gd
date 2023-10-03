@@ -229,11 +229,6 @@ func _on_button_pressed():
 	TurnController.StartNewRound()
 
 
-
-
-func IncreasePercentage(baseAmount:float,Percentage:float) ->float:	
-	return (Percentage / 100) * baseAmount
-
 func UpdateStatLabels(inPlayer:Player):
 	healthlabel.text = "Health: " + str(inPlayer.Health)
 	damageLabel.text = "Damage: " + str(inPlayer.Damage)

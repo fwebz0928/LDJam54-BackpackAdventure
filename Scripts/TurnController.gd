@@ -9,6 +9,7 @@ class_name TurnController
 @export var playerOriginPoint:Node2D
 @export var leftSideSpawn:Node2D
 @export var rightSideSpawn:Node2D
+@export var centerPos:Node2D
 var isPlayerTurn:bool = true
 var bRoundOver:bool = false
 var RoundTimer:Timer
@@ -37,7 +38,7 @@ func _ready():
 
 	#Setup the round timer so not doing attacks one after the other instanttly
 	RoundTimer = Timer.new()
-	RoundTimer.wait_time = 3
+	RoundTimer.wait_time = 1.5
 	RoundTimer.one_shot = true
 	RoundTimer.timeout.connect(StartRound)
 	add_child(RoundTimer)
@@ -100,17 +101,16 @@ func StartNewRound():
 
 
 func PlayerAttack():
+
 	isPlayerTurn = false
 	player.Attack()
-	if bRoundOver == false:
-		RoundTimer.wait_time = .5
-		RoundTimer.start()
+	
+
 
 func EnemyAttack():
 	isPlayerTurn =  true
-	print("Enemies Attacking")
-	if bRoundOver == false:
-		RoundTimer.start()
+	var currentEnemy = Globals.currentEnemies[Globals.currentEnemies.size() -1]
+	currentEnemy.Attack()
 
 func StartLootMode():
 
@@ -132,12 +132,16 @@ func SpawnItems(spawnPoint:Vector2,spawnAmount:int):
 		var itemMoveTween = get_tree().create_tween()
 		var newItem = ItemScene.instantiate() as Item
 		newItem.global_position = itemSpawnOrigin.global_position
-		var randNum = randi_range(1,7)
+		var randNum = randi_range(1,8)
 		newItem.LoadItem(randNum)
 		newItem.selected = false
 		spawnPoint.y -= 120
 		itemMoveTween.tween_property(newItem,"global_position",spawnPoint,.5).set_trans(Tween.TRANS_SINE)
 		call_deferred("add_child",newItem)
 		
-
+func StartRoundTimer():
+	print("Starting the Round timer again")
+	if bRoundOver == false:
+		RoundTimer.wait_time = .5
+		RoundTimer.start()
 	

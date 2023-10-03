@@ -11,6 +11,6 @@ func RemoveEnemy(enemyToRemove:Enemy) ->int:
 	var index = currentEnemies.find(enemyToRemove)
 	if(index != -1):
 		currentEnemies.remove_at(index)
-		print(currentEnemies.size())
+		print("Removing Enemy")
 	return currentEnemies.size()
 
